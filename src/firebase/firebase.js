@@ -14,16 +14,18 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const database = app.database();
 
+export {firebase, database as default};
+
 /* database.ref().once('value').then((snapshot) => {
     const val = snapshot.val();
     console.log(val)
 }) */
-
+/* 
 const onValueChange = database.ref().on('value', (snapshot) => {
     const val = snapshot.val();
     console.log(val);
 })
-
+ */
 /* setTimeout(() => {
     database.ref().off('value', onValueChange)
 }, 5000); */
