@@ -1,15 +1,13 @@
+import "normalize.css/normalize.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import configureStore from "./store/configureStore";
-import { addExpenseGen } from "./actions/expenses";
 import { Provider } from "react-redux";
-import { setTextFilterGen } from "./actions/filters";
-import visibleExpenses from "./selectors/expenses";
+import { startSetExpenses } from "./actions/expenses";
+import "./firebase/firebase";
 import AppRouter from "./routers/AppRouter";
-import "normalize.css/normalize.css";
+import configureStore from "./store/configureStore";
 import "./styles/styles.scss";
 
-import "./firebase/firebase";
 
 const store = configureStore();
 const jsx = (
@@ -19,4 +17,9 @@ const jsx = (
 );
 
 const appRoot = document.querySelector("#app");
-ReactDOM.render(jsx, appRoot);
+
+ReactDOM.render(<p>Loading......</p>, appRoot);
+
+store.dispatch(startSetExpenses()).then(() => {
+  ReactDOM.render(jsx, appRoot);
+});
