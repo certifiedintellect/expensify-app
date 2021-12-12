@@ -10,7 +10,7 @@ import "normalize.css/normalize.css";
 import "./styles/styles.scss";
 
 const store = configureStore();
-
+/* 
 store.dispatch(
   addExpenseGen({
     description: "water bill",
@@ -34,7 +34,7 @@ store.dispatch(
     amount: 4500,
     createdAt: 0
   })
-);
+); */
 
 
 //store.dispatch(setTextFilterGen("bill"));
