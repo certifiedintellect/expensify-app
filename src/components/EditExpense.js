@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import ExpenseForm from "../components/ExpenseForm";
 import { editExpenseGen } from "../actions/expenses";
-import { removeExpenseGen } from "../actions/expenses";
+import { startRemoveExpenseGen } from "../actions/expenses";
 
 const EditExpense = (props) => (
   <div>
@@ -17,7 +17,7 @@ const EditExpense = (props) => (
     />
     <button
       onClick={() => {
-        props.dispatch(removeExpenseGen(props.expense.id));
+        props.dispatch(startRemoveExpenseGen(props.expense.id));
         props.history.push("/");
       }}
     >
