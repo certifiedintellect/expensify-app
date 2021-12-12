@@ -1,20 +1,20 @@
 import * as firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCHQvNdabfX_XR6b9KAngdS6fHtEz-twAk",
-  authDomain: "expensify-79493.firebaseapp.com",
-  databaseURL: "https://expensify-79493-default-rtdb.firebaseio.com",
-  projectId: "expensify-79493",
-  storageBucket: "expensify-79493.appspot.com",
-  messagingSenderId: "239614355339",
-  appId: "1:239614355339:web:2ec23dcd234e8b011b718e",
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const database = app.database();
 
-export {firebase, database as default};
+export { firebase, database as default };
 
 /* database.ref().once('value').then((snapshot) => {
     const val = snapshot.val();
@@ -29,7 +29,6 @@ const onValueChange = database.ref().on('value', (snapshot) => {
 /* setTimeout(() => {
     database.ref().off('value', onValueChange)
 }, 5000); */
-
 
 /* 
 database.ref().set({
