@@ -9,41 +9,9 @@ import AppRouter from "./routers/AppRouter";
 import "normalize.css/normalize.css";
 import "./styles/styles.scss";
 
+import "./firebase/firebase";
+
 const store = configureStore();
-/* 
-store.dispatch(
-  addExpenseGen({
-    description: "water bill",
-    amount: 0,
-    createdAt: 1000
-  })
-);
-
-
-store.dispatch(
-  addExpenseGen({
-    description: "rent",
-    amount: 104500,
-    createdAt: 0,
-  })
-);
-
-store.dispatch(
-  addExpenseGen({
-    description: "gas bill",
-    amount: 4500,
-    createdAt: 0
-  })
-); */
-
-
-//store.dispatch(setTextFilterGen("bill"));
-/*const getVisibleExpenses = visibleExpenses(
-  store.getState().expenses,
-  store.getState().filters
-);
-console.log(getVisibleExpenses); */
-
 const jsx = (
   <Provider store={store}>
     <AppRouter />
