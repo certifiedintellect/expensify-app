@@ -8,15 +8,16 @@ const ExpenseSummary = (props) => {
   const formattedExpenses = numeral(props.summaryAmount).format("$0,0.00");
   return (
     <div>
-      <h1>Viewing {props.expenses.length} expenses totalling {formattedExpenses}</h1>
+      <h1>Viewing {props.expensesCount} expenses totalling {formattedExpenses}</h1>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
+  const expenses = getVisibleExpenses(state.expenses, state.filters);
   return {
-    expenses: getVisibleExpenses(state.expenses, state.filters),
-    summaryAmount: getTotalExpenses(state.expenses),
+    summaryAmount: getTotalExpenses(expenses),
+    expensesCount: expenses ? expenses.length : 0
   };
 };
 
