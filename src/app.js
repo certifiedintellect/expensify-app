@@ -9,6 +9,7 @@ import configureStore from "./store/configureStore";
 import "./styles/styles.scss";
 
 import { firebase } from "./firebase/firebase";
+import { history } from "./routers/AppRouter";
 
 const store = configureStore();
 const jsx = (
@@ -18,17 +19,26 @@ const jsx = (
 );
 
 const appRoot = document.querySelector("#app");
-
 ReactDOM.render(<p>Loading......</p>, appRoot);
 
-store.dispatch(startSetExpenses()).then(() => {
-  ReactDOM.render(jsx, appRoot);
-});
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(jsx, appRoot);
+    hasRendered = true;
+  }
+};
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log("logged in " , user);
+    store.dispatch(startSetExpenses()).then(() => {
+      renderApp();
+      if (history.location.pathname === "/") {
+        history.push("/dashboard");
+      }
+    });
   } else {
-    console.log("logged out");
+    renderApp();
+    history.push("/");
   }
 });
