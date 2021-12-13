@@ -7,6 +7,7 @@ import EditExpense from "../components/EditExpense";
 import HelpComponent from "../components/HelpComponent";
 import NotFoundComponent from "../components/NotFoundComponent";
 import Header from "../components/Header";
+import LoginPage from "../components/LoginPageComponent";
 
 
 const AppRouter = () => (
@@ -14,7 +15,8 @@ const AppRouter = () => (
     <div>
       <Header />
       <Switch>
-        <Route path="/" component={ExpensifyDashboardPage} exact={true} />
+        <Route path="/" component={LoginPage} exact={true} />
+        <Route path="/dashboard" component={ExpensifyDashboardPage} />
         <Route path="/create" component={AddExpensePage} />
         <Route path="/edit/:id" component={EditExpense} />
         <Route path="/help" component={HelpComponent} />

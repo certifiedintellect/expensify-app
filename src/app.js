@@ -8,6 +8,7 @@ import AppRouter from "./routers/AppRouter";
 import configureStore from "./store/configureStore";
 import "./styles/styles.scss";
 
+import { firebase } from "./firebase/firebase";
 
 const store = configureStore();
 const jsx = (
@@ -22,4 +23,12 @@ ReactDOM.render(<p>Loading......</p>, appRoot);
 
 store.dispatch(startSetExpenses()).then(() => {
   ReactDOM.render(jsx, appRoot);
+});
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("logged in " , user);
+  } else {
+    console.log("logged out");
+  }
 });
