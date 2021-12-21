@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { startSetExpenses } from "./actions/expenses";
+import { login, logout } from "./actions/auth";
 import "./firebase/firebase";
 import AppRouter from "./routers/AppRouter";
 import configureStore from "./store/configureStore";
@@ -31,6 +32,7 @@ const renderApp = () => {
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    store.dispatch(login(user.uid));
     store.dispatch(startSetExpenses()).then(() => {
       renderApp();
       if (history.location.pathname === "/") {
@@ -38,7 +40,9 @@ firebase.auth().onAuthStateChanged((user) => {
       }
     });
   } else {
+    store.dispatch(logout());
     renderApp();
     history.push("/");
   }
+ // console.log(store.getState())
 });
